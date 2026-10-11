@@ -16,7 +16,7 @@ jobs:
   build:
     # Apple Silicon runner. If this label is unavailable for your account,
     # select a supported macOS runner and adjust the artifact architecture.
-    runs-on: macos-14-arm64
+    runs-on: macos-26
     steps:
       - name: Check out source
         uses: actions/checkout@v4
