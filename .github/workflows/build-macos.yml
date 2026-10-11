@@ -1,4 +1,4 @@
-name: Build PikaTube for macOS
+name: Build PikaTube for Intel macOS
 
 on:
   workflow_dispatch:
@@ -14,9 +14,8 @@ permissions:
 
 jobs:
   build:
-    # Apple Silicon runner. If this label is unavailable for your account,
-    # select a supported macOS runner and adjust the artifact architecture.
-    runs-on: macos-26
+    # Intel runner for the 2020 Intel MacBook Pro.
+    runs-on: macos-15-intel
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -47,12 +46,12 @@ jobs:
       - name: Package app
         run: |
           cd dist
-          ditto -c -k --sequesterRsrc --keepParent PikaTube.app PikaTube-macOS-arm64.zip
+          ditto -c -k --sequesterRsrc --keepParent PikaTube.app PikaTube-macOS-x86_64.zip
 
       - name: Upload app artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PikaTube-macOS-arm64
+          name: PikaTube-macOS-x86_64
           path: dist/PikaTube-macOS-arm64.zip
           if-no-files-found: error
           retention-days: 14
